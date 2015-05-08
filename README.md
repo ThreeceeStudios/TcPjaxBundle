@@ -1,6 +1,10 @@
 Tc Pjax Bundle
 ==============
 
+[![Latest Stable Version](https://poser.pugx.org/tc/pjax-bundle/v/stable)](https://packagist.org/packages/tc/pjax-bundle)
+
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/bbd5db07-5a61-4ca2-b081-2dc0c94e7cb4/big.png)](https://insight.sensiolabs.com/projects/bbd5db07-5a61-4ca2-b081-2dc0c94e7cb4)
+
 Integrates Pjax to Symfony
 
 
