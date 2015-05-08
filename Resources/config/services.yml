@@ -1,0 +1,26 @@
+parameters:
+
+    tc.pjax.class: Tc\Bundle\Pjax\Pjax\Pjax
+    tc.pjax.twig_extension.class: Tc\Bundle\Pjax\Twig\Extension\PjaxExtension
+    tc.pjax.event_listener.class: Tc\Bundle\Pjax\EventListener\ResponseListener
+    tc.pjax.version: 1
+
+services:
+
+    tc.pjax:
+        class: %tc.pjax.class%
+        arguments: [@request_stack]
+
+
+    tc.pjax.twig_extension:
+        class: %tc.pjax.twig_extension.class%
+        public: false
+        arguments: [@tc.pjax, %tc.pjax.version%]
+        tags:
+            - { name: twig.extension }
+
+    tc.pjax.event_listener.response:
+        class: %tc.pjax.event_listener.class%
+        arguments: [%tc.pjax.version%]
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse}
