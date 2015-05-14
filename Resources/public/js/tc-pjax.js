@@ -30,9 +30,24 @@
         $.pjax.defaults.version = _this.config.version;
       }
 
+	    if (typeof angular !== 'undefined') {
+		    _this.angularRefresh = function(container) {
+			    var scope = angular.element(container).scope();
+			    var compile = angular.element(container).injector().get('$compile');
+			    compile($(container).contents())(scope);
+			    scope.$apply();
+		    }
+	    }
+
       _this.containers.each( function () {
         if ( !$( this ).attr( 'data-pjax-disable' ) ) {
-          $( document ).pjax( 'a', '#' + $( this ).attr( 'data-pjax-container' ) );
+	        var container = '#' + $( this ).attr( 'data-pjax-container' );
+          $( document ).pjax( 'a', container );
+	        if (typeof _this.angularRefresh !== 'undefined') {
+		        $( document ).on('pjax:success', function(e){
+			        _this.angularRefresh(container);
+		        });
+	        }
         }
       } );
 
