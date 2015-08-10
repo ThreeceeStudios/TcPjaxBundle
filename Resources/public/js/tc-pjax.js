@@ -42,7 +42,7 @@
       _this.containers.each( function () {
         if ( !$( this ).attr( 'data-pjax-disable' ) ) {
 	        var container = '#' + $( this ).attr( 'data-pjax-container' );
-          $( document ).pjax( 'a', container );
+          $( document ).pjax( 'a:not([no-pjax])', container );
 	        if (typeof _this.angularRefresh !== 'undefined') {
 		        $( document ).on('pjax:success', function(e){
 			        _this.angularRefresh(container);
